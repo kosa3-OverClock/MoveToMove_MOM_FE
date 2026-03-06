@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1100" viewBox="0 0 1800 1100">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#444" />
+    </marker>
+    <style>
+      .title { font: 700 34px sans-serif; fill: #111; }
+      .txt { font: 22px sans-serif; fill: #111; }
+      .small { font: 20px sans-serif; fill: #333; }
+      .box { rx: 14; ry: 14; stroke-width: 3; }
+      .line { stroke: #444; stroke-width: 4; fill: none; marker-end: url(#arrow); }
+    </style>
+  </defs>
+
+  <text x="900" y="55" text-anchor="middle" class="title">WebSocket + STOMP Flow (MoveToMove FE)</text>
+
+  <rect x="80" y="180" width="340" height="140" class="box" fill="#FFF7E6" stroke="#FB8C00"/>
+  <text x="250" y="240" text-anchor="middle" class="txt">사용자</text>
+  <text x="250" y="275" text-anchor="middle" class="txt">(Kanban/Manage 화면)</text>
+
+  <rect x="500" y="130" width="420" height="180" class="box" fill="#F6F8FA" stroke="#1F6FEB"/>
+  <text x="710" y="185" text-anchor="middle" class="txt">KanbanBoardCompo</text>
+  <text x="710" y="220" text-anchor="middle" class="txt">프로젝트 선택 시</text>
+  <text x="710" y="255" text-anchor="middle" class="txt">webSocketStore.connect(projectId)</text>
+
+  <rect x="500" y="360" width="420" height="230" class="box" fill="#F6F8FA" stroke="#1F6FEB"/>
+  <text x="710" y="420" text-anchor="middle" class="txt">Manage / KanbanColumn /</text>
+  <text x="710" y="455" text-anchor="middle" class="txt">KanbanCardOpen</text>
+  <text x="710" y="490" text-anchor="middle" class="txt">카드·컬럼 변경 시</text>
+  <text x="710" y="525" text-anchor="middle" class="txt">send*Message 호출</text>
+
+  <rect x="980" y="130" width="420" height="220" class="box" fill="#E3F2FD" stroke="#1565C0"/>
+  <text x="1190" y="185" text-anchor="middle" class="txt">webSocketStore</text>
+  <text x="1190" y="220" text-anchor="middle" class="txt">SockJS(API_BASE_URL + /ws)</text>
+  <text x="1190" y="255" text-anchor="middle" class="txt">Stomp.over(socket)</text>
+  <text x="1190" y="290" text-anchor="middle" class="txt">client.connect + subscribe</text>
+
+  <rect x="980" y="390" width="420" height="240" class="box" fill="#E3F2FD" stroke="#1565C0"/>
+  <text x="1190" y="450" text-anchor="middle" class="txt">webSocketStore</text>
+  <text x="1190" y="485" text-anchor="middle" class="txt">client.send(/app/project/...)</text>
+  <text x="1190" y="520" text-anchor="middle" class="txt">column/card/project</text>
+  <text x="1190" y="555" text-anchor="middle" class="txt">이벤트 전송</text>
+
+  <rect x="1460" y="220" width="280" height="280" class="box" fill="#E8F5E9" stroke="#2E7D32"/>
+  <text x="1600" y="280" text-anchor="middle" class="txt">Backend</text>
+  <text x="1600" y="315" text-anchor="middle" class="txt">STOMP Broker</text>
+  <text x="1600" y="355" text-anchor="middle" class="small">subscribe:</text>
+  <text x="1600" y="385" text-anchor="middle" class="small">/topic/project/{id}</text>
+  <text x="1600" y="425" text-anchor="middle" class="small">publish route:</text>
+  <text x="1600" y="455" text-anchor="middle" class="small">/app/project/...</text>
+
+  <rect x="500" y="670" width="420" height="190" class="box" fill="#FDECEC" stroke="#D32F2F"/>
+  <text x="710" y="730" text-anchor="middle" class="txt">onUnmounted</text>
+  <text x="710" y="765" text-anchor="middle" class="txt">webSocketStore.disconnect(projectId)</text>
+
+  <rect x="980" y="700" width="420" height="190" class="box" fill="#E3F2FD" stroke="#1565C0"/>
+  <text x="1190" y="760" text-anchor="middle" class="txt">수신 메시지 처리</text>
+  <text x="1190" y="795" text-anchor="middle" class="txt">handleIncomingMessage(type)</text>
+  <text x="1190" y="830" text-anchor="middle" class="txt">loadColumns/loadCards reload</text>
+
+  <line x1="420" y1="250" x2="500" y2="220" class="line"/>
+  <text x="450" y="215" class="small">프로젝트 클릭</text>
+
+  <line x1="920" y1="220" x2="980" y2="220" class="line"/>
+  <text x="930" y="205" class="small">connect + subscribe</text>
+
+  <line x1="1400" y1="250" x2="1460" y2="300" class="line"/>
+  <text x="1405" y="290" class="small">/ws + STOMP</text>
+
+  <line x1="420" y1="270" x2="500" y2="470" class="line"/>
+  <text x="430" y="390" class="small">카드/컬럼 조작</text>
+
+  <line x1="920" y1="480" x2="980" y2="510" class="line"/>
+  <text x="930" y="470" class="small">send*Message</text>
+
+  <line x1="1400" y1="510" x2="1460" y2="400" class="line"/>
+  <text x="1365" y="470" class="small">/app/project/...</text>
+
+  <line x1="1600" y1="500" x2="1240" y2="700" class="line"/>
+  <text x="1460" y="620" class="small">/topic/project/{id}</text>
+
+  <line x1="980" y1="790" x2="920" y2="770" class="line"/>
+  <text x="900" y="810" class="small">화면 갱신</text>
+
+  <rect x="80" y="930" width="1660" height="140" rx="14" ry="14" fill="#FAFAFA" stroke="#999" stroke-width="2"/>
+  <text x="110" y="985" class="txt">핵심: 구독(subscribe)은 connect 시 프로젝트별 1회 수행.</text>
+  <text x="110" y="1020" class="txt">이후 컬럼/카드 변경 액션마다 재구독하지 않고 send만 수행, 화면 종료(언마운트) 시 disconnect.</text>
+</svg>
